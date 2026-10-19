@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Cumpleaños Sally 🎂</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pantalla de inicio (el navegador necesita un clic para reproducir la música) -->
+  <div id="inicio">
+    <div class="inicio-caja">
+      <div class="regalo">🎁</div>
+      <h2>Tengo algo para ti, Sally 💖</h2>
+      <button id="btnAbrir">Toca para abrir 🎉</button>
+    </div>
+  </div>
+
+  <!-- Música de fondo: pon tu archivo como mananitas.mp3 en esta misma carpeta -->
+  <audio id="musica" src="mananitas.mp3" loop></audio>
+
+  <!-- Contenedor de emojis que caen -->
+  <div id="emojis"></div>
+
+  <!-- Fotos flotando -->
+  <img src="foto1.jpg" class="foto f1" alt="Sally 1">
+  <img src="foto2.jpg" class="foto f2" alt="Sally 2">
+  <img src="foto1.jpg" class="foto f3" alt="Sally 3">
+  <img src="foto2.jpg" class="foto f4" alt="Sally 4">
+
+  <!-- Mensaje principal -->
+  <main class="tarjeta">
+    <h1>🎂 Feliz Cumpleañossss Sallyyy 🎉</h1>
+
+    <p>
+      Que te la pases muy bonito hoy, te quiero muchísimo en verdad. Has sido una
+      muy buena amiga que he tenido y que nunca se ha querido ir de mi vida, y
+      perdón por si te trato mal, te quiero muchoooo y ya te quiero verrr para
+      platicar. Sabes que siempre vas a contar conmigo para todo lo que quieras
+      y que no estás sola, yo siempre voy a estar para ti y no te sientas sola
+      en ningún momento. Yo sé qué se siente, pero siéntete feliz porque estamos
+      estudiando esto 💪 y feliz cumpleaños.
+    </p>
+
+    <p>
+      Y sobre todo que Dios nos bendiga siempre y nos proteja 🙏 y te quiero
+      muchooo Sally. Gracias por todas las enseñanzas y consejos que me has
+      dado, que sé que no cualquier amiga me lo va a dar, y que nuestra amistad
+      dure toda la vida. Te quiero muchooo 💕
+    </p>
+
+    <h2 class="final">🎈 ¡FELIZ CUMPLE! 🎈</h2>
+  </main>
+
+  <script>
+    const musica = document.getElementById('musica');
+    const inicio = document.getElementById('inicio');
+
+    document.getElementById('btnAbrir').addEventListener('click', () => {
+      musica.play().catch(() => {});
+      inicio.classList.add('oculto');
+      setTimeout(() => inicio.remove(), 800);
+    });
+
+    // Emojis de cumpleaños que caen
+    const lista = ['🎂', '🎉', '🎈', '🎁', '🥳', '🎊', '🍰', '💖', '✨', '🎀', '🧁', '🌸'];
+    const contenedor = document.getElementById('emojis');
+
+    function crearEmoji() {
+      const e = document.createElement('span');
+      e.className = 'emoji';
+      e.textContent = lista[Math.floor(Math.random() * lista.length)];
+      e.style.left = Math.random() * 100 + 'vw';
+      e.style.fontSize = (20 + Math.random() * 30) + 'px';
+      e.style.animationDuration = (6 + Math.random() * 8) + 's';
+      contenedor.appendChild(e);
+      setTimeout(() => e.remove(), 15000);
+    }
+    setInterval(crearEmoji, 350);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
+  animation: fondo 15s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@keyframes fondo {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------- Pantalla de inicio ---------- */
+#inicio {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 182, 213, 0.95);
+  transition: opacity 0.8s ease;
+}
+
+#inicio.oculto {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.inicio-caja {
+  text-align: center;
+  padding: 30px;
+}
+
+.regalo {
+  font-size: 90px;
+  animation: brincar 1s ease infinite;
+}
+
+.inicio-caja h2 {
+  color: #fff;
+  margin: 15px 0 25px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+#btnAbrir {
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  background: #ff4f93;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 79, 147, 0.5);
+  transition: transform 0.2s;
+}
+
+#btnAbrir:hover {
+  transform: scale(1.08);
+}
+
+@keyframes brincar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+
+/* ---------- Emojis cayendo ---------- */
+#emojis {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.emoji {
+  position: absolute;
+  top: -50px;
+  animation: caer linear forwards;
+}
+
+@keyframes caer {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+}
+
+/* ---------- Fotos flotando ---------- */
+.foto {
+  position: fixed;
+  width: 170px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 5px solid #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  animation: flotar 5s ease-in-out infinite;
+}
+
+.f1 { top: 6%;    left: 4%;   animation-delay: 0s;   --giro: -6deg; }
+.f2 { top: 8%;    right: 4%;  animation-delay: 1s;   --giro: 6deg; }
+.f3 { bottom: 6%; left: 5%;   animation-delay: 2s;   --giro: 5deg; }
+.f4 { bottom: 7%; right: 5%;  animation-delay: 3s;   --giro: -5deg; }
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0) rotate(var(--giro)); }
+  50%      { transform: translateY(-25px) rotate(calc(var(--giro) * -1)); }
+}
+
+/* ---------- Tarjeta con el mensaje ---------- */
+.tarjeta {
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  margin: 60px auto;
+  padding: 35px 30px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  border-radius: 25px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.tarjeta h1 {
+  color: #e6007e;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  animation: latido 1.8s ease infinite;
+}
+
+.tarjeta p {
+  color: #4a2040;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.final {
+  color: #ff4f93;
+  font-size: 2rem;
+  margin-top: 10px;
+  animation: latido 1.8s ease infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+/* ---------- Celulares y pantallas pequeñas ---------- */
+@media (max-width: 900px) {
+  .foto {
+    width: 90px;
+    height: 125px;
+    border-width: 3px;
+    opacity: 0.9;
+  }
+
+  .tarjeta {
+    margin: 150px 15px;
+    padding: 25px 18px;
+  }
+
+  .tarjeta h1,
+  .final {
+    font-size: 1.5rem;
+  }
+
+  .tarjeta p {
+    font-size: 1rem;
+  }
+}
